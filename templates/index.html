@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="app-shell">
+        <section class="board-section">
+            <div class="top-bar">
+                <div>
+                    <h1>Chess AI</h1>
+                    <p>Play against alpha-beta AI</p>
+                </div>
+                <div class="top-bar-buttons">
+                    <button id="resign-btn" class="danger-btn">Resign</button>
+                    <button id="reset-btn"  class="primary-btn">New Game</button>
+                </div>
+            </div>
+
+            <div class="board-frame">
+                <div id="chessboard" class="chessboard"></div>
+                <div class="overlay hidden" id="game-over-overlay">
+                    <h2 id="game-over-text">Game Over</h2>
+                    <button id="restart-btn" class="primary-btn">Play Again</button>
+                </div>
+            </div>
+            <p id="message" class="message"></p>
+        </section>
+
+        <aside class="side-panel">
+            <!-- Game Status -->
+            <div class="panel-card">
+                <h2>Game Status</h2>
+                <div class="turn-indicator">
+                    <span id="turn-orb" class="orb white"></span>
+                    <span id="turn-text">White to move</span>
+                </div>
+            </div>
+
+            <!-- Advantage bar -->
+            <div class="panel-card advantage-card">
+                <h2>Advantage</h2>
+
+                <!-- Black captured pieces (shown above bar) -->
+                <div class="captured-row" id="black-captures"></div>
+
+                <!-- Advantage bar -->
+                <div class="adv-bar-wrap">
+                    <div class="adv-bar-bg">
+                        <div id="adv-white-fill" class="adv-fill white-fill"></div>
+                        <div id="adv-black-fill" class="adv-fill black-fill"></div>
+                    </div>
+                    <div class="adv-labels">
+                        <span id="adv-white-label" class="adv-label white-label">0</span>
+                        <span id="adv-black-label" class="adv-label black-label">0</span>
+                    </div>
+                </div>
+
+                <!-- White captured pieces (shown below bar) -->
+                <div class="captured-row" id="white-captures"></div>
+            </div>
+
+            <!-- Move log -->
+            <div class="panel-card move-card">
+                <h2>Move Log</h2>
+                <ul id="move-history"></ul>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Resign confirmation dialog -->
+    <div id="resign-dialog" class="dialog-overlay hidden">
+        <div class="dialog-box">
+            <p>Resign this game?</p>
+            <div class="dialog-buttons">
+                <button id="resign-confirm" class="danger-btn">Yes, resign</button>
+                <button id="resign-cancel"  class="primary-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
