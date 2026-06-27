@@ -102,4 +102,3 @@ python main.py
 **Atharva Galwade**
 
 GitHub: https://github.com/Athreya07
-Demo: 
